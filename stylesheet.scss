@@ -1,0 +1,3515 @@
+// Fonts
+$font: var(--font);
+
+// Colors
+$color-1: var(--color-1);
+$color-2: var(--color-2);
+$color-contrast: var(--color-contrast);
+$color-border-1: rgb(from var(--color-1) r g b / 15%);
+$color-border-2: rgb(from var(--color-1) r g b / 30%);
+
+// Resources
+$header: var(--header);
+$pattern: var(--pattern);
+
+// Sizes
+$default-text-size: 16px;
+$default-text-line: 24px;
+
+// Helpers
+$text-xxl: 3rem;
+$text-xl: 2rem;
+$text-l: 1.5rem;
+$text-m: 1rem;
+$text-s: 0.925rem;
+$text-xs: 0.725rem;
+$text-xxs: 0.425rem;
+$line-xxl: calc($text-xxl * 1.5);
+$line-xl: calc($text-xl * 1.5);
+$line-l: calc($text-l * 1.5);
+$line-m: calc($text-m * 1.5);
+$line-s: calc($text-s * 1.5);
+$line-xs: calc($text-xs * 1.5);
+$line-xxs: calc($text-xxs * 1.5);
+$weight-xl: 900;
+$weight-l: 700;
+$weight-m: 400;
+$spacing-xxl: 3rem;
+$spacing-xl: 2rem;
+$spacing-l: 1.5rem;
+$spacing-m: 1rem;
+$spacing-s: 0.75rem;
+$spacing-xs: 0.5rem;
+$spacing-xxs: 0.25rem;
+$shadow: 0 $spacing-xxs $spacing-m $color-border-1;
+
+// Elements
+$navbar: 56px;
+$avatar: 275px;
+$signature: 250px;
+
+@mixin generic-header {
+    @include first-letter();
+    text-align: center;
+    font-size: $text-l;
+    line-height: $text-l;
+    padding: 0 0 $spacing-xs 0;
+    margin: 0 0 $spacing-xs 0;
+    border-bottom: $spacing-xxs $color-1 solid;
+}
+
+@mixin generic-subheader {
+    font-size: calc($text-m * 1.225);
+    line-height: calc($line-m * 1.225);
+    text-transform: uppercase;
+    font-style: normal;
+    letter-spacing: 1px;
+    font-weight: $weight-l;
+}
+
+@mixin generic-title {
+    font-size: $text-xxl;
+    line-height: $line-xxl;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: $weight-xl;
+}
+
+@mixin generic-subtitle {
+    @include first-letter();
+    font-size: $text-l;
+    line-height: $line-l;
+    font-weight: $weight-l;
+    margin: 0 0 $spacing-xs 0;
+    font-style: italic;
+    padding: 0;
+    border: 0;
+    text-align: left;
+}
+
+@mixin generic-block {
+    display: block;
+    background: $color-2;
+    color: $color-1;
+    box-shadow: $shadow;
+}
+
+@mixin generic-inner {
+    padding: $spacing-m 0 $spacing-m $spacing-m;
+    border-left: 1px solid $color-border-2;
+}
+
+@mixin generic-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-l;
+}
+
+@mixin generic-stats {
+    display: block;
+    font-size: $text-xs;
+    line-height: $line-xs;
+    font-style: italic;
+    padding: $spacing-s;
+    white-space: nowrap;
+    background: $color-1;
+    color: $color-2;
+}
+
+@mixin generic-input {
+    @include generic-hover();
+    background: $color-2;
+    color: $color-1;
+    box-shadow: $shadow;
+    border: $color-border-1 1px solid;
+}
+
+@mixin generic-button {
+    background: $color-1;
+    color: $color-2;
+    padding: $spacing-s $spacing-m;
+    font-size: $text-m;
+    line-height: $line-m;
+}
+
+@mixin generic-link {
+    display: block;
+    background: $color-1;
+    color: $color-2;
+    font-size: $text-xs;
+    line-height: $line-xs;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: $spacing-s;
+
+    i {
+        display: none;
+    }
+}
+
+@mixin generic-quote {
+    display: flex;
+    align-items: center;
+    background: $color-2;
+    color: $color-1;
+    padding: $spacing-xs $spacing-m;
+    font-style: italic;
+    font-size: $text-s;
+    line-height: $line-s;
+    box-shadow: $shadow;
+}
+
+@mixin generic-align {
+    transform: translateX($spacing-xl) translateY($spacing-xl);
+}
+
+@mixin generic-shadow {
+    position: relative;
+    transform-style: preserve-3d;
+
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: $color-contrast;
+        transform: translateX(-$spacing-xl) translateY(-$spacing-xl) translateZ(-1px);
+        top: 0;
+        left: 0;
+    }
+}
+
+@mixin generic-hover {
+    transition: 0.5s filter;
+
+    &:focus,
+    &:hover {
+        filter: brightness(0.97);
+    }
+}
+
+@mixin navbar-item {
+    @include generic-button();
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+
+    .anmt-date,
+    .icon {
+        color: $color-contrast;
+    }
+
+    .anmt-title,
+    .text {
+        font-family: $font;
+        font-style: italic;
+        font-size: $text-s;
+        font-weight: $weight-m;
+        letter-spacing: 1px;
+    }
+}
+
+@mixin first-letter {
+    display: block;
+
+    &::first-letter {
+        color: $color-contrast;
+    }
+}
+
+@mixin text-overflow {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin forum-css {
+    :root {
+        --font-1: var(--font);
+        --font-2: var(--font);
+        font-size: $default-text-size;
+        line-height: $default-text-line;
+    }
+
+    body {
+        background: $color-2;
+        color: $color-1;
+        font-size: $default-text-size;
+        font-family: $font;
+        line-height: $default-text-line;
+        min-height: 100vh;
+
+        &::before {
+            content: "";
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-image: $pattern;
+            background-attachment: fixed;
+            background-repeat: repeat;
+            opacity: 0.6;
+            z-index: 0;
+            filter: contrast(1.1);
+        }
+
+        > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        a {
+            @include generic-hover();
+            color: $color-contrast;
+            font-size: 105%;
+            font-weight: $weight-l;
+        }
+
+        @for $i from 1 through 6 {
+            h#{$i} {
+                font-family: $font;
+                font-size: calc($text-xl * (1.075 - 0.075 * $i));
+                line-height: calc($line-xl * (1.075 - 0.075 * $i));
+                font-weight: $weight-xl;
+                font-style: italic;
+            }
+        }
+
+        > header {
+            display: none;
+        }
+
+        #forum-navbar {
+            background: $color-1;
+            color: $color-2;
+            padding: 0 !important;
+            position: sticky;
+            z-index: 2;
+            top: 0;
+
+            > .main-body {
+                display: flex;
+                justify-content: space-between;
+                gap: $spacing-xs;
+                margin: 0 auto;
+                padding: 0 $spacing-l;
+                height: $navbar;
+
+                > .left {
+                    > a {
+                        display: flex;
+                        align-items: center;
+                        height: 100%;
+                        padding: $spacing-m;
+                        margin: 0 0 0 (-$spacing-m);
+                        background: $color-1;
+                        color: $color-2;
+                        font-weight: $weight-l;
+                        letter-spacing: 1px;
+                        font-style: italic;
+                        font-size: $text-l;
+                    }
+                }
+
+                > .right {
+                    display: flex;
+                    align-items: center;
+
+                    #forum-navbar-desktop {
+                        > ul {
+                            display: flex;
+                            gap: $spacing-s;
+
+                            > .navbar-item {
+                                padding: 0;
+
+                                > a {
+                                    display: flex;
+                                    align-items: center;
+                                    background: $color-contrast;
+                                    color: $color-2;
+                                    font-size: $text-s;
+                                    line-height: $line-s;
+                                    padding: $spacing-xxs $spacing-xs;
+                                    text-transform: uppercase;
+                                    gap: $spacing-xxs;
+
+                                    .icon {
+                                        display: none;
+                                    }
+                                }
+
+                                &.has-dropdown {
+                                    .navbar-link {
+                                        &::after {
+                                            position: relative;
+                                            right: initial;
+                                            top: -0.1rem;
+                                            margin: 0 0 0 $spacing-xxs;
+                                            border-color: $color-2;
+                                            transform: rotate(-45deg) scale(0.8);
+                                        }
+                                    }
+
+                                    .navbar-dropdown {
+                                        background: $color-1;
+                                        padding: 0;
+                                        border: 0;
+                                        border-radius: 0;
+
+                                        .navbar-item {
+                                            @include navbar-item();
+                                        }
+
+                                        hr {
+                                            display: none;
+                                        }
+
+                                        .select-container {
+                                            width: calc(100% - 2 * $spacing-m);
+                                            margin: $spacing-xs $spacing-m $spacing-m $spacing-m;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            #multiaccount-transition {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 100;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100vw;
+                height: 100vh;
+                background: $color-1;
+            }
+        }
+
+        #forum-footer {
+            background: $color-1;
+            color: $color-2;
+            font-size: $text-s;
+            padding: 0 !important;
+
+            > .main-body {
+                display: flex;
+                justify-content: space-between;
+                gap: $spacing-xs;
+                margin: 0 auto;
+                padding: $spacing-m $spacing-l;
+                height: $navbar;
+
+                a {
+                    color: $color-2;
+                    font-weight: $weight-m;
+                }
+
+                strong {
+                    font-weight: $weight-m;
+                }
+
+                .right {
+                    max-width: 70%;
+
+                    #forum-credits {
+                        display: block;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+        }
+
+        #forum-body,
+        #forum-wiki {
+            padding: 0 !important;
+
+            > .main-body {
+                padding: $spacing-xl $spacing-l;
+
+                #content-container {
+                    display: grid;
+                    grid-template-columns: minmax(0, 1fr) 265px;
+                    gap: $spacing-xxl;
+
+                    #forum-topbar {
+                        order: 1;
+
+                        #search-img,
+                        #sq-img,
+                        img {
+                            box-shadow: $shadow;
+                        }
+                    }
+                    #forum-content {
+                        order: 0;
+                    }
+                }
+            }
+        }
+
+        #extracredits-section {
+            display: none;
+        }
+
+        #side-section {
+            display: flex;
+            flex-flow: column;
+            gap: $spacing-m;
+
+            .plank-block {
+                .plank-title {
+                    @include generic-header();
+                }
+
+                .topbar-element {
+                    display: block;
+                    width: 100%;
+                    aspect-ratio: 13/9;
+                    background-size: cover;
+                    background-position: center;
+                }
+
+                &#plank-help {
+                    #help-main {
+                        display: grid;
+                        grid-template-columns: repeat(2, minmax(0, 1fr));
+                        gap: $spacing-xs;
+
+                        a {
+                            @include generic-button();
+                            text-align: center;
+                            font-weight: $weight-xl;
+                            font-style: italic;
+                            color: $color-contrast;
+                            text-transform: uppercase;
+                            padding: $spacing-s $spacing-xs;
+
+                            &:nth-child(2n - 1):last-child {
+                                grid-column: span 2;
+                            }
+                        }
+                    }
+                }
+
+                &#plank-anmt {
+                    ul {
+                        display: flex;
+                        flex-flow: column;
+                        gap: $spacing-xs;
+
+                        .anmt-element {
+                            @include navbar-item();
+                            justify-content: center;
+                            gap: $spacing-xs;
+
+                            .anmt-date {
+                                font-size: $text-l;
+                                line-height: $text-l;
+                            }
+                        }
+                    }
+                }
+
+                &#plank-staff {
+                    ul {
+                        display: flex;
+                        flex-flow: column;
+                        gap: $spacing-xs;
+
+                        .admin-element {
+                            display: flex;
+                            flex-flow: column;
+                            justify-content: center;
+                            align-items: center;
+                            padding: $spacing-m;
+
+                            .admin-name {
+                                font-size: $text-l;
+                                line-height: $text-l;
+                                font-weight: $weight-xl;
+                                text-transform: uppercase;
+                                letter-spacing: 1px;
+                            }
+
+                            .admin-desc {
+                                text-align: center;
+                                color: $color-2;
+                                font-size: $text-s;
+                                line-height: $line-s;
+                                font-style: italic;
+                                font-weight: $weight-m;
+                            }
+                        }
+                    }
+                }
+
+                &#plank-affiliates {
+                    #forum-affiliates-mini {
+                        display: flex;
+                        flex-flow: column;
+                        gap: $spacing-s;
+
+                        .section-title {
+                            @include first-letter();
+                            font-size: $text-m;
+                            line-height: $line-m;
+                            text-align: center;
+                            display: none;
+
+                            &:last-child {
+                                display: block;
+                            }
+                        }
+
+                        ul {
+                            display: grid;
+                            grid-template-columns: repeat(3, minmax(0, 1fr));
+                            gap: $spacing-xs;
+                            justify-items: flex-start;
+                            justify-content: flex-start;
+                            padding: 0 calc(99px / 2) !important;
+
+                            &:nth-child(2) {
+                                grid-template-columns: repeat(2, minmax(0, 1fr));
+                                padding: 0 calc(47px / 2) !important;
+                            }
+                        }
+                    }
+                }
+
+                &#plank-acreditations {
+                    #forum-acreditations-mini {
+                        font-size: $text-s;
+                        line-height: $line-s;
+                    }
+                }
+            }
+        }
+
+        #forum-affiliates,
+        #forum-affiliates-mini {
+            a,
+            img {
+                display: block;
+            }
+        }
+
+        #frmAgreement {
+            > .generic-element {
+                > .post-content {
+                    padding: 0;
+                }
+            }
+        }
+
+        .main-body {
+            max-width: 1280px;
+        }
+
+        .field-element {
+            &.field-cloudflare {
+                display: flex;
+                justify-content: center;
+                height: 65px;
+            }
+        }
+
+        .forum-head {
+            margin: 0 0 $spacing-xl 0;
+
+            h3 {
+                @include first-letter();
+                font-size: calc($text-xxl * 1.225);
+                line-height: calc($text-xxl * 1.225);
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                font-style: normal;
+            }
+
+            small {
+                display: flex;
+                align-items: center;
+                gap: $spacing-xs;
+                font-weight: $weight-xl;
+                font-size: $text-m;
+                text-transform: uppercase;
+
+                &::before {
+                    content: "";
+                    display: block;
+                    width: 100%;
+                    height: $spacing-xs;
+                    background: $color-1;
+                    flex: 1;
+                }
+
+                .word-censored {
+                    background: $color-1;
+                    transform: skew(-0.01turn, 0);
+
+                    &:nth-child(2n) {
+                        transform: skew(0.01turn, 0);
+                    }
+
+                    &:nth-child(3n) {
+                        transform: skew(-0.02turn, 0);
+                    }
+
+                    &:nth-child(4n) {
+                        transform: skew(0.02turn, 0);
+                    }
+                }
+            }
+
+            #forum-breadcrumb {
+                font-family: $font;
+                font-weight: $weight-l;
+                font-style: italic;
+
+                a {
+                    color: $color-1;
+                }
+
+                li {
+                    & + li::before {
+                        content: "\f054";
+                        font-family: "Font Awesome 6 Pro";
+                        font-weight: $weight-xl;
+                        font-style: normal;
+                        font-variant: normal;
+                        text-rendering: auto;
+                        line-height: 1;
+                        font-size: 60%;
+                        color: $color-contrast;
+                        text-shadow:
+                            1px 0px 0,
+                            1px 1px 0,
+                            0px 0px 0,
+                            0px 1px 0;
+                    }
+
+                    &:last-child {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .basic-element,
+        .category-element {
+            margin: 0 0 $spacing-xxl 0;
+
+            &:has(+ #extracredits-section) {
+                margin: 0;
+            }
+
+            &:last-child {
+                margin: 0;
+            }
+
+            &#extracredits-section {
+                margin: $spacing-xxl 0 0 0;
+            }
+        }
+
+        .basic-element {
+            &#group-section {
+                .memberlist-members {
+                    .memberitem-element {
+                        .memberlist-name {
+                            padding: $spacing-m;
+                        }
+                    }
+                }
+            }
+        }
+
+        .category-element {
+            > .columns {
+                display: grid;
+                grid-template-columns: 100%;
+                gap: $spacing-xl;
+                margin: 0;
+
+                > .column {
+                    padding: 0;
+
+                    &.forum-element {
+                        display: flex;
+                        flex-flow: column;
+                        position: relative;
+                    }
+                }
+            }
+
+            &.category-estadisticas {
+                > .columns {
+                    @include generic-block();
+                    display: grid;
+                    grid-template-columns: $avatar minmax(0, 1fr);
+                    gap: 0;
+
+                    > .column {
+                        width: 100%;
+
+                        &#bloque-actuales {
+                            height: 100%;
+                            background: $color-1;
+                            padding: $spacing-xl !important;
+
+                            h6 {
+                                color: $color-2;
+                            }
+
+                            #new-connected {
+                                .has-users {
+                                    margin: -($spacing-xs);
+
+                                    a {
+                                        margin: $spacing-xs;
+                                        padding: 0;
+                                    }
+                                }
+                            }
+                        }
+
+                        &#bloque-historico {
+                            display: flex;
+                            flex-flow: column;
+                            justify-content: space-between;
+                            gap: $spacing-l;
+                            padding: $spacing-xl !important;
+
+                            #past-connected {
+                                .has-users {
+                                    height: 175px;
+                                }
+                            }
+
+                            #current-groups {
+                                #census {
+                                    display: grid;
+                                    grid-template-columns: repeat(4, minmax(0, 1fr));
+                                    gap: $spacing-xs;
+
+                                    a {
+                                        display: flex;
+                                        flex-flow: column;
+                                        align-items: center;
+                                        justify-content: center;
+                                        text-align: center;
+                                        background: $color-1;
+                                        padding: $spacing-m;
+                                        color: inherit;
+                                        aspect-ratio: 5/2;
+
+                                        .census-name {
+                                            font-size: calc($text-l * 0.8);
+                                            line-height: calc($line-l * 0.8);
+                                            font-weight: $weight-xl;
+                                            text-transform: uppercase;
+                                            letter-spacing: 1px;
+                                        }
+
+                                        .census-count {
+                                            color: $color-2;
+                                            font-size: $text-xs;
+                                            line-height: $line-xs;
+                                            font-style: italic;
+                                            font-weight: $weight-m;
+
+                                            &::after {
+                                                content: "personajes";
+                                                margin: 0 0 0 $spacing-xxs;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        &#bloque-ultimostemas {
+                            grid-column: 1 / span 2;
+
+                            h6 {
+                                background: $color-contrast;
+                                color: $color-2;
+                                padding: $spacing-xl;
+                            }
+
+                            .ltopic-list {
+                                margin: $spacing-m 0 0 0;
+                                padding: 0 $spacing-xl;
+
+                                & + small {
+                                    display: block;
+                                    font-size: $text-s;
+                                    margin: $spacing-m 0 0 0;
+                                    padding: 0 $spacing-xl $spacing-xl $spacing-xl;
+                                    text-align: center;
+                                }
+                            }
+                        }
+
+                        &#bloque-actuales,
+                        &#bloque-historico {
+                            h6 {
+                                @include first-letter();
+                                margin: 0 0 $spacing-s 0;
+                            }
+                        }
+
+                        h6 {
+                            letter-spacing: 1px;
+                        }
+
+                        .has-users {
+                            margin: -($spacing-xxs);
+                            font-size: 0;
+                            overflow: auto;
+
+                            a {
+                                @include generic-stats();
+                                display: inline-block;
+                                font-size: $text-s;
+                                color: $color-2;
+                                margin: $spacing-xxs;
+                            }
+
+                            br {
+                                display: none;
+                            }
+                        }
+
+                        .ltopic-list {
+                            display: grid;
+                            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+                            .ltopic-element {
+                                display: grid;
+                                grid-template-columns: 50px minmax(0, 1fr);
+                                align-items: center;
+                                gap: $spacing-xs;
+                                padding: $spacing-m 0;
+                                border-bottom: 1px solid $color-border-2;
+
+                                .ltopic-last {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    height: 50px;
+                                    font-size: $text-l;
+                                }
+
+                                .ltopic-data {
+                                    display: grid;
+                                    grid-template-columns: 100%;
+                                    gap: $spacing-xxs;
+
+                                    .ltopic-title {
+                                        @include text-overflow();
+                                        font-size: calc($text-l * 0.8);
+                                        line-height: calc($line-l * 0.8);
+                                    }
+
+                                    .ltopic-info {
+                                        font-size: calc($text-s * 0.9);
+                                        white-space: nowrap;
+                                        text-overflow: ellipsis;
+                                        overflow: hidden;
+
+                                        > a {
+                                            &:nth-child(1) {
+                                                font-style: italic;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .forum-forum {
+            @include generic-block();
+            position: relative;
+            padding: $spacing-xl;
+            width: 75%;
+            align-self: flex-end;
+
+            &.no-image {
+                width: 100%;
+            }
+
+            .forum-header {
+                position: relative;
+
+                .forum-title {
+                    @include generic-title();
+                    order: 1;
+                }
+
+                .forum-stats {
+                    @include generic-stats();
+                    position: absolute;
+                    top: -($spacing-xxl);
+                    left: -($spacing-m);
+                }
+            }
+
+            .forum-content {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) ($avatar * 0.75);
+                gap: $spacing-l;
+
+                .forum-box {
+                    font-size: $text-s;
+                    line-height: $line-m;
+                    grid-column: 1 / span 2;
+                    min-height: 72px;
+                }
+
+                .forum-links {
+                    display: flex;
+                    flex-flow: row wrap;
+                    align-items: center;
+                    gap: $spacing-xs;
+                    font-size: calc($text-s - 0.1rem);
+                    font-style: italic;
+                    padding: 0 $spacing-m 0 0;
+                    border-top: 1px solid;
+                    border-right: 1px solid;
+                    border-color: $color-border-2;
+                    min-height: 75px;
+                }
+
+                .forum-last {
+                    align-self: center;
+                    font-size: 0.925rem;
+
+                    > strong {
+                        font-style: italic;
+                    }
+                }
+
+                > br {
+                    display: none;
+                }
+            }
+
+            + .forum-image {
+                width: 35%;
+                height: calc(100% + $spacing-xs);
+                position: absolute;
+                z-index: -1;
+                top: $spacing-m;
+                background-position: center;
+                transition: 0.5s filter;
+            }
+
+            &:hover {
+                + .forum-image {
+                    filter: brightness(0.97);
+                }
+            }
+        }
+
+        .topiclist-header {
+            display: flex;
+            justify-content: space-between;
+            margin: (-$spacing-s) 0 $spacing-l 0;
+
+            li {
+                h3 {
+                    @include first-letter();
+                    font-size: calc($text-l * 0.9);
+                    line-height: calc($line-l * 0.9);
+                }
+
+                &:last-child {
+                    display: none;
+                }
+            }
+        }
+
+        .topiclist-topics {
+            display: grid;
+            grid-template-columns: 100%;
+            gap: $spacing-l;
+
+            > li {
+                > h6 {
+                    font-size: $text-m;
+                    line-height: $spacing-m;
+                    font-weight: $weight-m;
+                }
+
+                .topiclist-topic {
+                    @include generic-block();
+                    padding: $spacing-xl $spacing-l $spacing-l $spacing-l;
+                    position: relative;
+
+                    .topic-main {
+                        display: grid;
+                        grid-template-columns: 50px minmax(0, 1fr);
+
+                        .topic-icon {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 50px;
+                            font-size: $text-l;
+
+                            &::before {
+                                content: "\f15b";
+                                -moz-osx-font-smoothing: grayscale;
+                                -webkit-font-smoothing: antialiased;
+                                font-style: normal;
+                                font-variant: normal;
+                                text-rendering: auto;
+                                line-height: 1;
+                                font-family: "Font Awesome 6 Pro";
+                                font-weight: $weight-xl;
+                            }
+                        }
+
+                        .topic-title {
+                            @include text-overflow();
+                            font-size: calc($text-l * 0.8);
+                            line-height: calc($line-l * 0.8);
+
+                            a {
+                                font-size: inherit;
+                                line-height: inherit;
+                            }
+                        }
+
+                        .topic-extra {
+                            display: flex;
+                            gap: $spacing-xs;
+
+                            .topic-extra-separador {
+                                display: none;
+                            }
+
+                            .topic-author {
+                                order: 0;
+
+                                strong {
+                                    font-style: italic;
+                                }
+                            }
+
+                            .topic-pagination + .topic-extra-separador {
+                                display: block;
+                                order: 1;
+                            }
+
+                            .topic-pagination {
+                                order: 2;
+                                display: block;
+
+                                strong {
+                                    display: inline-flex;
+                                    margin: 0 0 0 $spacing-xxs;
+                                }
+                            }
+                        }
+                    }
+
+                    .topic-repliesandviews {
+                        @include generic-stats();
+                        position: absolute;
+                        top: -($spacing-m);
+                        left: $spacing-m;
+                    }
+
+                    .topic-quicklink {
+                        font-size: $text-s;
+                        line-height: $line-s;
+                        margin: $spacing-xs 0 0 0;
+                        padding: $spacing-xs 0 0 0;
+                        border-top: $color-border-2 1px solid;
+                        text-align: center;
+
+                        .topic-last {
+                            strong {
+                                font-style: italic;
+                            }
+
+                            br {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+
+                &.row.is-unread .topic-icon::before {
+                    content: "\f12a" !important;
+                }
+
+                &.row.is-closed .topic-icon::before {
+                    content: "\f023" !important;
+                }
+
+                &.row.is-sticky .topic-icon::before {
+                    content: "\e1ff" !important;
+                }
+
+                &.row.is-announcement .topic-icon::before {
+                    content: "\f27a" !important;
+                }
+
+                &.row.is-global-announcement .topic-icon::before {
+                    content: "\f0f3" !important;
+                }
+            }
+        }
+
+        .topic-draft .topic-lastpost > .forum-checkbox .checkbox-content::after,
+        .topic-draft .topic-lastpost > *:not(.forum-checkbox)::after {
+            content: "Examinar bosquejo";
+            margin-left: $spacing-xs;
+            line-height: $line-s;
+            font-weight: $weight-l;
+            color: $color-contrast;
+            font-family: $font;
+            text-transform: initial;
+        }
+
+        .topic-mp .topic-lastpost > .forum-checkbox .checkbox-content::after,
+        .topic-mp .topic-lastpost > *:not(.forum-checkbox)::after {
+            content: "Seleccionar mensaje";
+            margin-left: 0;
+            line-height: $line-s;
+            font-size: $text-s;
+            color: $color-1;
+            font-family: $font;
+            text-transform: initial;
+        }
+
+        #forum-followed .topic-mp .topic-lastpost > .forum-checkbox .checkbox-content::after,
+        #forum-followed .topic-mp .topic-lastpost > *:not(.forum-checkbox)::after,
+        .topiclist-topics > li.row.is-mod .topic-lastpost > .forum-checkbox .checkbox-content::after,
+        .topiclist-topics > li.row.is-mod .topic-lastpost > *:not(.forum-checkbox)::after {
+            content: "Seleccionar tema";
+            margin-left: 0;
+            line-height: $line-s;
+            font-size: $text-s;
+            color: $color-1;
+            font-family: $font;
+            text-transform: initial;
+        }
+
+        .forum-controls {
+            display: flex;
+            justify-content: space-between;
+            gap: $spacing-m;
+            margin: 0 0 $spacing-xl 0;
+
+            .page-buttons {
+                display: flex;
+                gap: $spacing-xs;
+            }
+
+            &.lower-controls {
+                margin: $spacing-xl 0 0 0;
+
+                .dropdown {
+                    .dropdown-trigger {
+                        .forum-button {
+                            &::after {
+                                position: relative;
+                                transform: rotate(135deg) scale(0.8);
+                                top: 3px;
+                            }
+                        }
+                    }
+
+                    .dropdown-menu {
+                        bottom: 100%;
+                        top: initial;
+                    }
+                }
+            }
+        }
+
+        .forum-fieldlist {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .forum-field {
+            align-items: flex-start;
+            gap: $spacing-s;
+
+            .field-name {
+                @include first-letter();
+                display: table-cell;
+                width: min(35%, 200px);
+                font-family: $font;
+                font-weight: $weight-l;
+                font-style: italic;
+                border-bottom: 4px solid $color-1;
+                padding: 14.1px 0;
+                white-space: nowrap;
+                flex: 0 0 auto;
+            }
+
+            .field-content {
+                position: relative;
+
+                .character-custom {
+                    position: absolute;
+                    right: $spacing-s;
+                    top: $spacing-m !important;
+
+                    span {
+                        color: $color-contrast !important;
+                        font-weight: $weight-l;
+                    }
+                }
+            }
+        }
+
+        #bloque-login {
+            .forum-field {
+                .field-name {
+                    width: min(42%, 200px);
+                }
+            }
+        }
+
+        .forum-postlist {
+            @include generic-list();
+        }
+
+        .profile-sticky {
+            position: sticky;
+            top: $navbar;
+        }
+
+        .page-anchor {
+            position: absolute;
+            top: calc(0px - $navbar - $spacing-l);
+        }
+
+        .post-content {
+            display: block;
+            background: $color-2;
+            color: $color-1;
+            padding: $spacing-xl $spacing-xl $spacing-xl calc($spacing-xl * 2);
+
+            .post-info {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: $spacing-m;
+                margin: 0 0 $spacing-m 0;
+
+                .post-side {
+                    display: flex;
+                    align-items: center;
+                    gap: $spacing-xs;
+
+                    .post-title {
+                        font-size: $text-s;
+
+                        a {
+                            font-size: $text-xs;
+                            background: $color-1;
+                            color: $color-2;
+                            padding: $spacing-xs;
+                            letter-spacing: 1px;
+                            font-style: italic;
+                            margin: 0 0 0 $spacing-xs;
+                            cursor: default;
+                        }
+                    }
+                }
+
+                .post-buttons {
+                    display: flex;
+                    flex-flow: wrap;
+                    justify-content: flex-end;
+                    gap: $spacing-xs;
+
+                    .post-button {
+                        > a {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            aspect-ratio: 1/1;
+                            padding: $spacing-s;
+                            font-size: $text-xs;
+                            line-height: $line-s;
+                            background: $color-1;
+                            color: $color-contrast;
+
+                            span {
+                                display: none;
+                            }
+                        }
+
+                        &.post-button-enlace-permanente {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            > .is-content {
+                cursor: initial;
+            }
+        }
+
+        #forum-preview {
+            .post-content {
+                @include generic-block();
+                padding: $spacing-xl;
+                margin: 0 auto;
+                width: 100%;
+                max-width: calc(578px + ($spacing-xl * 2) - $spacing-xl);
+            }
+        }
+
+        .postlist-post {
+            position: relative;
+
+            &.post-diceroll {
+                .post-content {
+                    padding: 2rem;
+
+                    .is-content.content-dice {
+                        ul {
+                            list-style: none;
+                            padding: 0;
+                        }
+
+                        .dice-rolllist {
+                            margin: $spacing-xl 0 0 0;
+
+                            .rolllist-roll {
+                                h6 {
+                                    margin: 0 0 $spacing-xs 0;
+                                }
+
+                                .roll-results {
+                                    display: flex;
+                                    flex-flow: wrap;
+                                    gap: $spacing-xs;
+
+                                    .roll-result {
+                                        margin: 0;
+
+                                        img {
+                                            display: block;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .post-main {
+                    grid-template-columns: 100%;
+                }
+
+                &::after,
+                .post-profile,
+                .post-signature,
+                .post-buttons {
+                    display: none !important;
+                }
+            }
+
+            .post-main {
+                display: grid;
+                grid-template-columns: $avatar minmax(0, 1fr);
+                background: $color-1;
+                color: $color-2;
+                box-shadow: $shadow;
+
+                .post-profile {
+                    align-self: flex-start;
+
+                    .miniprofile-main {
+                        @include generic-align();
+                        @include generic-shadow();
+                        display: block;
+                        aspect-ratio: 11/16;
+                        z-index: 2;
+                        background: $color-contrast;
+
+                        img {
+                            display: block;
+                            width: 100%;
+                            height: auto;
+                        }
+
+                        &:focus,
+                        &:hover {
+                            filter: initial;
+
+                            a {
+                                filter: brightness(0.97);
+                            }
+                        }
+                    }
+
+                    .miniprofile-name {
+                        position: relative;
+                        z-index: 1;
+                        padding: $spacing-xxl $spacing-xl 0 $spacing-xl;
+                        text-align: center;
+
+                        h3 {
+                            @include generic-subheader();
+
+                            a {
+                                font-size: inherit;
+                                font-weight: inherit;
+                            }
+                        }
+                    }
+
+                    .miniprofile-fields {
+                        @include generic-align();
+                        padding: $spacing-xl $spacing-xl $spacing-xl 0;
+                        display: flex;
+                        flex-flow: wrap;
+                        gap: $spacing-xxs;
+                        margin: (-$spacing-m * 2.75) 0 $spacing-xl 0;
+                        top: initial;
+                        background: $color-1;
+
+                        .miniprofile-field {
+                            font-size: $text-s;
+                            font-style: italic;
+
+                            strong {
+                                display: none;
+                            }
+
+                            &::before {
+                                content: "■";
+                                font-size: $text-xs;
+                                margin: 0 $spacing-xxs;
+                                color: $color-contrast;
+                                font-style: normal;
+                                position: relative;
+                                top: -1px;
+                            }
+
+                            &:first-child {
+                                &::before {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .post-signature {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) $signature;
+                gap: $spacing-l;
+                grid-column: 1 / span 2;
+                background: $color-contrast;
+                padding: $spacing-xl;
+
+                .signature-side {
+                    display: flex;
+                    flex-flow: column;
+                    align-items: center;
+                    justify-content: center;
+                    gap: $spacing-l;
+
+                    .miniprofile-name {
+                        display: none;
+                        order: 0;
+                    }
+
+                    .miniprofile-contacts {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: $spacing-xs;
+                        order: 2;
+
+                        .miniprofile-contact {
+                            a {
+                                @include generic-link();
+                            }
+                        }
+                    }
+
+                    .miniprofile-quote {
+                        @include generic-quote();
+                        order: 1;
+                    }
+                }
+
+                .miniprofile-signature {
+                    display: block;
+                    aspect-ratio: 5/3;
+
+                    img {
+                        display: block;
+
+                        &.is-avatar {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        .forum-otherposts {
+            @include generic-list();
+
+            .postlist-post {
+                position: relative;
+                display: grid;
+                grid-template-columns: $avatar minmax(0, 1fr);
+                background: $color-1;
+                color: $color-2;
+                box-shadow: $shadow;
+
+                .post-profile {
+                    &.post-datafields {
+                        @include generic-align();
+                        @include generic-shadow();
+                        position: sticky;
+                        width: 100%;
+                        align-self: flex-start;
+                        background: $color-1;
+                        margin: 0 0 $spacing-xl 0;
+
+                        li {
+                            padding: 0 $spacing-xl $spacing-xs $spacing-xl;
+                            margin: 0;
+                            font-size: $text-s;
+                            line-height: $line-s;
+
+                            &:first-child {
+                                padding-top: $spacing-xl;
+                            }
+
+                            &:last-child {
+                                padding-bottom: $spacing-xl;
+                            }
+
+                            .datafield-name {
+                                font-weight: $weight-xl;
+                                letter-spacing: 1px;
+                                font-style: italic;
+                            }
+                        }
+                    }
+                }
+
+                .post-content {
+                    display: block;
+                    background: $color-2;
+                    color: $color-1;
+                    padding: $spacing-xl $spacing-xl $spacing-xl calc($spacing-xl * 2);
+                }
+
+                &.post-diceroll {
+                    .post-content {
+                        padding: 2rem 2rem 2rem 4rem;
+                    }
+
+                    .post-profile {
+                        display: block !important;
+                    }
+                }
+            }
+        }
+
+        .forum-infoblock {
+            background: $color-1;
+            color: $color-2;
+            padding: $spacing-l;
+            margin: 0 0 $spacing-l 0;
+
+            h5 {
+                @include first-letter();
+                font-size: $text-m;
+                line-height: $line-m;
+                margin: 0 0 $spacing-xs 0;
+            }
+
+            ul {
+                display: flex;
+                flex-flow: column;
+                gap: $spacing-xs;
+                padding: 0 0 0 $spacing-m;
+                font-size: $text-s;
+                line-height: $line-s;
+                list-style: disclosure-closed;
+
+                li {
+                    &::marker {
+                        color: $color-contrast;
+                    }
+                }
+            }
+        }
+
+        .dropdown-menu {
+            background: $color-2;
+            color: $color-1;
+            box-shadow: $shadow;
+            border: $color-border-1 1px solid;
+            border-radius: none;
+            padding: 0;
+
+            .dropdown-content {
+                padding: 0;
+
+                .usereply-option,
+                .dropdown-item {
+                    @include generic-hover();
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    font-size: $text-s;
+                    line-height: $line-s;
+                    background: $color-2;
+                    color: $color-1;
+                    padding: $spacing-xs $spacing-s;
+                    font-weight: $weight-m;
+                    margin: 0;
+                }
+            }
+        }
+
+        .pagination-manager {
+            display: flex;
+            align-items: center;
+            gap: $spacing-xs;
+
+            .pagination-input {
+                display: flex;
+                align-items: center;
+                font-weight: $weight-l;
+
+                input {
+                    width: 40px;
+                    height: 48px;
+                    margin: 0 $spacing-xxs 0 0;
+                    padding: $spacing-m $spacing-xxs;
+                    text-align: center;
+                }
+            }
+
+            .page-action {
+                a {
+                    font-size: 0.925rem;
+                    text-shadow:
+                        1px 1px $color-contrast,
+                        -1px 1px $color-contrast,
+                        1px -1px $color-contrast,
+                        -1px -1px $color-contrast,
+                        -1px 0px $color-contrast,
+                        0px -1px $color-contrast,
+                        1px 0px $color-contrast,
+                        0px 1px $color-contrast;
+                }
+            }
+        }
+
+        .notification-element {
+            background: $color-1;
+            color: $color-2;
+            padding: $spacing-m;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: $spacing-m;
+            cursor: pointer;
+
+            .notification-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: $text-l;
+                width: $text-l;
+                color: $color-contrast;
+            }
+
+            .notification-content {
+                h3 {
+                    font-size: $text-m;
+                    line-height: $line-m;
+                }
+
+                p {
+                    font-size: $text-xs;
+                    line-height: $line-m;
+                }
+            }
+
+            .notification-controls {
+                align-self: flex-start;
+                color: $color-contrast;
+            }
+        }
+
+        #forum-usereply {
+            #usereply-top {
+                h3 {
+                    @include first-letter();
+
+                    small {
+                        font-size: $text-s;
+                        line-height: $line-s;
+                        font-style: normal;
+                        margin: (-$spacing-xs) 0 0 0;
+                    }
+                }
+
+                .usereply-button {
+                    @include generic-hover();
+                    aspect-ratio: 1/1;
+                    padding: $spacing-s;
+                    font-size: $text-xs;
+                    line-height: $line-s;
+                    background: $color-1;
+                    color: $color-contrast;
+                    border-color: $color-1;
+                }
+            }
+
+            #usereply-extra {
+                max-width: 100%;
+            }
+
+            #usereply-editor {
+                @include generic-input();
+                height: 300px;
+            }
+        }
+
+        #usereply-comand {
+            margin: $spacing-l 0 0 0;
+            gap: $spacing-xs;
+        }
+
+        .button2,
+        .button1,
+        input[type="Submit"],
+        input[type="reset"] {
+            @include generic-hover();
+            font-family: $font;
+            font-weight: $weight-l;
+            border: none;
+            background: $color-1;
+            color: $color-2;
+            cursor: pointer;
+            white-space: nowrap;
+            height: calc($spacing-xxl * 0.9);
+            padding: $spacing-xs $spacing-m;
+            font-size: $text-m;
+            line-height: $line-m;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: $text-s;
+            font-weight: $weight-xl;
+            margin: 0;
+
+            &.btn-main {
+                background: $color-contrast;
+            }
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="password"],
+        select,
+        textarea {
+            @include generic-input();
+            width: 100%;
+            padding: $spacing-m $spacing-s;
+            font-size: $text-s;
+            font-style: normal;
+            font-weight: $weight-m;
+            line-height: $line-s;
+
+            &[disabled] {
+                background: $color-1;
+                color: $color-2;
+                border-color: $color-1;
+            }
+        }
+
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .select-container {
+            position: relative;
+            width: 100%;
+
+            &::after {
+                border: 3px solid $color-1;
+                border-radius: 2px;
+                border-right: 0;
+                border-top: 0;
+                content: "";
+                display: block;
+                height: 0.625em;
+                margin-top: -0.4375em;
+                pointer-events: none;
+                position: absolute;
+                top: 52%;
+                transform: rotate(-45deg) scale(0.8);
+                transform-origin: center;
+                width: 0.625em;
+                right: 0.825em;
+            }
+
+            select {
+                cursor: pointer;
+            }
+        }
+
+        .character-selector {
+            position: relative;
+
+            .selector-list {
+                display: none;
+                flex-flow: column;
+                gap: $spacing-xxs;
+                background: $color-1;
+                color: $color-2;
+                position: absolute;
+                width: 100%;
+                left: 0;
+                top: 56.5px;
+                z-index: 2;
+                max-height: 200px;
+                overflow: auto;
+
+                li {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: $spacing-xxs $spacing-m;
+                    cursor: pointer;
+
+                    &::before {
+                        display: none;
+                    }
+                }
+            }
+
+            input:focus + .selector-list,
+            input + .selector-list:hover {
+                display: flex;
+            }
+
+            & + .character-list {
+                display: flex;
+                flex-flow: row wrap;
+                gap: $spacing-xs;
+                margin: $spacing-xs 0 0 0;
+
+                li {
+                    background: $color-1;
+                    color: $color-2;
+                    font-size: $text-s;
+                    padding: $spacing-xxs $spacing-xs;
+                    cursor: pointer;
+
+                    &:hover {
+                        filter: brightness(0.97);
+                    }
+                }
+            }
+        }
+
+        .checkbox-click {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: calc($spacing-l + $spacing-xxs);
+            height: calc($spacing-l + $spacing-xxs);
+            margin: 0 $spacing-xs 0 0;
+            background: $color-1;
+            color: $color-contrast;
+        }
+
+        .memberlist-members {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: $spacing-s;
+
+            .memberitem-element {
+                @include generic-block();
+                position: relative;
+
+                .memberlist-name {
+                    padding: $spacing-m;
+                    color: $color-contrast;
+
+                    h3 {
+                        font-size: $text-m;
+                        line-height: $line-m;
+                    }
+                }
+
+                .memberlist-extra {
+                    @include generic-stats();
+                    position: absolute;
+                    top: -($spacing-m);
+                    left: $spacing-m;
+                    font-weight: $weight-m;
+                }
+
+                .memberlist-avatar {
+                    display: block;
+                    width: 100%;
+                    transition: 0.5s filter;
+                    aspect-ratio: 11/16;
+                }
+
+                .memberlist-fields {
+                    background: $color-1;
+                    color: $color-2;
+                    padding: $spacing-m;
+                    font-size: $text-xs;
+                    white-space: nowrap;
+
+                    .memberlist-field {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+
+                        strong {
+                            display: block;
+                            color: $color-contrast;
+                            margin-bottom: -($spacing-xxs);
+                        }
+                    }
+                }
+
+                &:hover {
+                    filter: none;
+
+                    .memberlist-avatar {
+                        filter: brightness(0.97);
+                    }
+                }
+            }
+        }
+
+        .btn-element {
+            .forum-button {
+                @include navbar-item();
+            }
+
+            .dropdown-trigger {
+                .forum-button {
+                    &::after {
+                        content: "";
+                        display: block;
+                        position: initial;
+                        width: 0.625em;
+                        height: 0.625em;
+                        margin: 0 0 0 $spacing-xxs;
+                        border: 3px solid $color-2;
+                        border-radius: 2px;
+                        border-right: 0;
+                        border-top: 0;
+                        pointer-events: none;
+                        transform: rotate(-45deg) scale(0.8);
+                        transform-origin: center;
+                    }
+                }
+            }
+        }
+
+        .msg-element {
+            @include generic-block();
+            padding: $spacing-l;
+        }
+
+        .forumseparator-element {
+            height: $spacing-xxl;
+
+            img {
+                display: none;
+            }
+        }
+
+        .is-content {
+            font-size: $text-s;
+            text-align: justify;
+
+            hr {
+                display: none;
+                height: $spacing-m;
+                margin: 0;
+                background: top;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p {
+                margin: 0 0 $spacing-xs 0;
+
+                &:last-child {
+                    margin: 0;
+                }
+            }
+
+            ul,
+            ol {
+                display: flex;
+                flex-flow: column;
+                gap: $spacing-xs;
+            }
+
+            ul {
+                list-style: disclosure-closed;
+                padding: 0 0 0 $spacing-m;
+            }
+
+            ol {
+                list-style: decimal;
+                padding: 0 0 0 $spacing-xl;
+
+                li {
+                    &::marker {
+                        font-weight: $weight-l;
+                        font-style: italic;
+                        color: $color-contrast;
+                    }
+                }
+            }
+
+            table {
+                width: 100%;
+                table-layout: fixed;
+
+                thead,
+                tbody {
+                    tr {
+                        th,
+                        td {
+                            padding: $spacing-s;
+                            border-bottom: 1px solid $color-border-2;
+                        }
+
+                        th {
+                            @include first-letter();
+                            display: table-cell;
+                            background: $color-1;
+                            color: $color-2;
+                            font-weight: $weight-l;
+                            font-style: italic;
+                            letter-spacing: 1px;
+                        }
+
+                        td {
+                            line-height: $line-s;
+                        }
+                    }
+                }
+            }
+
+            blockquote,
+            .codebox,
+            .spoiler,
+            .hidecode {
+                position: relative;
+                z-index: 10;
+                background: $color-1;
+                color: $color-2;
+                box-shadow: $shadow;
+                overflow: hidden;
+                padding: $spacing-l;
+            }
+
+            blockquote > div > cite,
+            .codebox > dt,
+            .spoiler > dt {
+                @include first-letter();
+                position: relative;
+                z-index: 20;
+                display: block;
+                font-size: $text-m;
+                font-weight: $weight-l;
+                font-style: italic;
+                letter-spacing: 1px;
+                cursor: default;
+            }
+
+            blockquote > div,
+            .codebox > dd,
+            .spoiler > dd,
+            .hidecode > dd {
+                position: relative;
+                z-index: 20;
+            }
+
+            .adminbox-icon {
+                position: absolute;
+                right: $spacing-l;
+                top: $spacing-l;
+                font-size: $text-xxl;
+                color: $color-contrast;
+                opacity: 0.2;
+                z-index: 10;
+            }
+
+            blockquote > div > cite a {
+                border: none !important;
+                padding: 0 !important;
+            }
+
+            .codebox > dt,
+            blockquote > div > cite {
+                margin-bottom: $spacing-l;
+
+                .is-pointer {
+                    color: $color-contrast;
+                    font-size: $text-m;
+                }
+            }
+
+            code {
+                background: $color-1;
+                color: $color-contrast;
+            }
+
+            .codebox {
+                dt {
+                    em {
+                        color: $color-2;
+                        font-style: normal;
+                    }
+                }
+
+                code {
+                    position: relative;
+                    display: block;
+                    padding: 0;
+                    background: transparent;
+                    color: inherit;
+                    z-index: 15;
+                }
+            }
+
+            .spoiler {
+                padding: 0;
+
+                > dt {
+                    padding: $spacing-l;
+                    cursor: pointer;
+                }
+
+                .spoiler_content {
+                    padding: 0 $spacing-l $spacing-l $spacing-l;
+
+                    &.hidden {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .main-slat {
+            .mainslat-title {
+                @include first-letter();
+                font-size: $text-xl;
+                line-height: $line-xl;
+                font-weight: $weight-xl;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin: 0 0 $spacing-xs 0;
+            }
+
+            .userecord-head {
+                .userecord-image {
+                    display: block;
+                }
+
+                .userecord-fc {
+                    padding: $spacing-xs $spacing-m;
+                    text-align: center;
+                    background: $color-1;
+                    color: $color-contrast;
+                    font-weight: $weight-l;
+                    letter-spacing: 0.25px;
+                    font-size: $text-xs;
+                }
+
+                .userecord-data {
+                    display: grid;
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                    padding: 0;
+                    list-style: none;
+                    text-align: center;
+                    line-height: $line-s;
+                    gap: $spacing-xxs;
+                    margin: $spacing-xs 0 0 0;
+
+                    .userecord-fieldname {
+                        letter-spacing: 0.25px;
+                        font-weight: $weight-xl;
+                        font-style: italic;
+                        color: $color-contrast;
+                    }
+                }
+            }
+
+            .slat-interior {
+                .slatinterior-title {
+                    @include generic-subtitle();
+                }
+
+                .slatinterior-content {
+                    @include generic-inner();
+
+                    .rp-list {
+                        margin: 0 0 (-$spacing-xs) 0 !important;
+                    }
+                }
+            }
+        }
+
+        .mp-main {
+            @include generic-block();
+            padding: $spacing-xl;
+            border-top: $spacing-xl solid $color-contrast;
+
+            #mp-title {
+                @include generic-inner();
+                width: 100%;
+
+                h3 {
+                    font-size: calc($text-m * 1.15);
+                    line-height: $text-l;
+                }
+
+                div {
+                    font-size: $text-s;
+                    line-height: $line-s;
+
+                    .mp-from {
+                        font-style: italic;
+                    }
+                }
+            }
+
+            h3 {
+                small {
+                    font-size: $text-s;
+                    line-height: $line-s;
+
+                    .mp-date {
+                        font-style: initial;
+                    }
+                }
+            }
+        }
+
+        .wiki-body {
+            display: grid;
+            grid-template-columns: $avatar minmax(0, 1fr);
+
+            .wiki-index {
+                color: $color-1;
+                margin: 0;
+
+                ul {
+                    .wiki-controls {
+                        font-weight: $weight-xl;
+
+                        .text {
+                            color: $color-1;
+                        }
+
+                        .router-link-active {
+                            color: $color-1;
+                        }
+                    }
+                }
+            }
+
+            .wiki-content {
+                max-width: initial;
+
+                .forum-fieldlist {
+                    max-width: 100%;
+                }
+            }
+        }
+
+        .rp-element {
+            background: $color-1;
+            padding: $spacing-m;
+
+            .rp-name {
+                font-size: $text-s;
+
+                span {
+                    font-size: inherit;
+                    letter-spacing: 0.25px;
+                }
+
+                small {
+                    font-size: inherit;
+                    font-weight: $weight-m;
+                    font-style: italic;
+                }
+            }
+        }
+
+        .rela-list {
+            .rela-element {
+                .rela-image {
+                    height: auto;
+                    aspect-ratio: 11/16;
+                    border-radius: 0;
+                    border: none;
+                }
+
+                .rela-content {
+                    color: $color-1;
+
+                    .rela-title {
+                        h4 {
+                            @include generic-subtitle();
+                        }
+                    }
+
+                    .small-text {
+                        @include generic-inner();
+                        font-weight: $weight-m;
+                    }
+                }
+            }
+        }
+
+        #forum-modal {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+
+            .modal-element {
+                position: relative;
+                z-index: 1;
+
+                .modal-title {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    background: $color-1;
+                    padding: $spacing-m $spacing-xl;
+
+                    h3 {
+                        font-size: $text-m;
+                        color: $color-2;
+                    }
+                }
+
+                .modal-content {
+                    padding: $spacing-xl;
+                    background: $color-2;
+
+                    .modal-buttons {
+                        display: flex;
+                        justify-content: center;
+                        margin: $spacing-l 0 0 0;
+                        gap: $spacing-xs;
+                    }
+                }
+            }
+
+            .is-bgmodal {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: $color-1;
+                opacity: 0.1;
+            }
+        }
+
+        #profile-section {
+            .profile-element {
+                > section {
+                    background: $color-1;
+                    color: $color-2;
+                    box-shadow: $shadow;
+
+                    #profile-head {
+                        display: grid;
+                        grid-template-columns: $avatar minmax(0, 1fr);
+
+                        #profile-userside {
+                            #profile-minifields {
+                                @include generic-shadow();
+                                padding: $spacing-xl;
+                                margin: 0;
+                            }
+                        }
+
+                        #profile-userinfo {
+                            display: flex;
+                            flex-flow: column-reverse;
+                            align-items: flex-end;
+                            justify-content: space-between;
+                            padding: $spacing-xl;
+                            background-size: cover;
+                            background-position: center;
+                            aspect-ratio: 189/100;
+
+                            #profile-username {
+                                @include generic-title();
+                                text-align: right;
+                                line-height: $text-xxl;
+                            }
+
+                            #profile-rank {
+                                @include generic-subtitle();
+                                text-align: right;
+                                margin: 0 0 (-$spacing-xs) 0;
+                            }
+                        }
+                    }
+
+                    #profile-subhead {
+                        background: $color-contrast;
+                        padding: $spacing-xl;
+
+                        .is-gapless {
+                            justify-content: space-between;
+                            gap: $spacing-l;
+                        }
+
+                        #profile-quote {
+                            display: flex;
+                            justify-content: center;
+
+                            .coolquote-quote {
+                                .fas {
+                                    display: none;
+                                }
+
+                                .coolquote-content {
+                                    @include generic-quote();
+                                }
+                            }
+
+                            .coolquote-from {
+                                display: none;
+                            }
+                        }
+
+                        #profile-links {
+                            gap: $spacing-xs;
+
+                            &.columns {
+                                margin: 0 !important;
+                                padding: 0 !important;
+
+                                .column {
+                                    margin: 0 !important;
+                                    padding: 0 !important;
+                                    width: 48%;
+                                }
+                            }
+
+                            .profile-linklist {
+                                display: grid;
+                                grid-template-columns: 1fr;
+                                gap: $spacing-xs;
+
+                                li {
+                                    display: flex;
+
+                                    a {
+                                        @include generic-link();
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    #profile-fields {
+                        position: relative;
+                        display: grid;
+                        grid-template-columns: $avatar minmax(0, 1fr);
+
+                        #profile-infofields {
+                            display: grid;
+                            grid-template-columns: 1fr;
+                            gap: $spacing-l;
+                            background: $color-2;
+                            color: $color-1;
+                            padding: $spacing-xl $spacing-xl $spacing-xl calc($spacing-xl * 2);
+                        }
+                    }
+
+                    #profile-extras,
+                    #profile-history {
+                        background: $color-2;
+                        color: $color-1;
+                    }
+
+                    #profile-infominifields,
+                    #profile-minifields {
+                        @include generic-align();
+                        background: $color-1;
+                        padding: $spacing-xl $spacing-xl $spacing-xl 0;
+
+                        a,
+                        ul {
+                            font-size: $text-s;
+                        }
+                    }
+
+                    ul#profile-minifields {
+                        @include generic-align();
+                        background: $color-1;
+                        padding: $spacing-xl $spacing-xl $spacing-xl 0;
+                        font-size: $text-s;
+                    }
+
+                    #profile-infominifields ul,
+                    ul#profile-minifields {
+                        display: flex;
+                        flex-flow: wrap;
+                        gap: $spacing-xxs;
+
+                        .minifield-element {
+                            font-size: $text-s;
+                            font-style: italic;
+
+                            .minifield-label {
+                                display: none;
+                            }
+
+                            &::before {
+                                content: "■";
+                                font-size: $text-xs;
+                                margin: 0 $spacing-xxs;
+                                color: $color-contrast;
+                                font-style: normal;
+                                position: relative;
+                                top: -1px;
+                                left: initial !important;
+                            }
+
+                            &:first-child {
+                                &::before {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+
+                    #profile-infominifields {
+                        position: sticky;
+                        top: $navbar;
+                        margin: 0 0 $spacing-xl 0;
+
+                        h3 {
+                            transform: translateX($spacing-xl);
+                        }
+                    }
+
+                    .profile-extra {
+                        .extrafield-head {
+                            margin: 0 0 $spacing-m 0;
+                        }
+
+                        .profile-container {
+                            @include generic-list();
+                            padding: $spacing-xl;
+                        }
+
+                        .profile-extra-header {
+                            @include generic-title();
+                            background: $color-contrast;
+                            color: $color-2;
+                            padding: $spacing-xl;
+                            line-height: $text-xxl;
+
+                            span {
+                                display: inline-block;
+                                padding: $spacing-m $spacing-l;
+                                background: $color-1;
+                                font-size: $text-xl;
+                            }
+                        }
+                    }
+
+                    h3 {
+                        @include generic-subheader();
+                        margin: 0 0 $spacing-m 0;
+                    }
+
+                    h4 {
+                        @include generic-subtitle();
+                    }
+
+                    h6 {
+                        display: none;
+                    }
+
+                    .field-content {
+                        @include generic-inner();
+                    }
+                }
+            }
+        }
+
+        .rela-list,
+        .rp-list {
+            margin: 0 !important;
+        }
+
+        #forum-affiliates {
+            .section-title {
+                @include first-letter();
+                text-align: center;
+                margin: 0 0 $spacing-xs 0;
+            }
+
+            #forum-affiliates-elite {
+                .affiliates-collection {
+                    > ul {
+                        display: grid;
+                        grid-template-columns: repeat(6, minmax(0, 1fr));
+                        gap: $spacing-xs;
+                        justify-items: flex-start;
+                        justify-content: flex-start;
+                        padding: 0 calc(119px / 2) !important;
+                    }
+                }
+            }
+
+            #forum-affiliates-sisters {
+                display: flex;
+                flex-flow: column;
+                justify-content: center;
+
+                > ul {
+                    display: grid;
+                    grid-template-columns: repeat(4, minmax(0, 1fr));
+                    gap: $spacing-xs;
+                    justify-items: flex-start;
+                    justify-content: flex-start;
+                    padding: 0 calc(128px / 2) !important;
+                }
+            }
+
+            #forum-affiliates-regular {
+                .section-title {
+                    font-size: $text-l;
+                    margin: 0;
+                }
+            }
+        }
+
+        #credits-social {
+            margin: $spacing-xs 0 0 0;
+
+            > ul {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-flow: row;
+                gap: $spacing-s;
+
+                a {
+                    font-weight: $weight-xl;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                }
+            }
+        }
+
+        ul.no-results {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+@include forum-css();
+
+$avatar: 200px;
+$signature: 175px;
+
+@media only screen and (max-width: 1279px) {
+    @include forum-css();
+
+    body {
+        #forum-body,
+        #forum-wiki {
+            > .main-body {
+                #content-container {
+                        .forum-forum {
+                        .forum-content {
+                            grid-template-columns: minmax(0,1fr) 200px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+    body {
+        #forum-navbar {
+            #hmg-menu {
+                position: fixed;
+                top: 0;
+                left: 100vw;
+                background: var(--color-1);
+                width: 100%;
+                height: 100%;
+                padding: $spacing-m $spacing-l $spacing-l $spacing-l;
+                transition: .5s ease-in-out transform;
+
+                &+.bg-active {
+                    display: none;
+                }
+
+                &:not(.not-visible) {
+                    transform: translateX(-100vw);
+                }
+
+                h3 {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin: 0;
+                    background: $color-1;
+                    color: $color-2;
+                    font-weight: $weight-l;
+                    letter-spacing: 1px;
+                    font-style: italic;
+                    font-size: $text-l;
+                    line-height: $text-l;
+
+                    i {
+                        font-size: $text-m;
+                    }
+
+                    & + ul {
+                        margin: $spacing-xl 0 0 0;
+
+                        .navbar-item,
+                        .navbar-item > a {
+                            display: flex;
+                            gap: $spacing-xs;
+                            font-size: $text-m;
+
+                            .icon {
+                                color: $color-contrast;
+                            }
+
+                            .text {
+                                color: $color-2;
+                            }
+
+                            &:focus,
+                            &:hover {
+                                background: transparent;
+                            }
+                        }
+                    }
+                }
+
+                .navbar-item {
+                    margin: 0 0 $spacing-xs 0;
+                    padding: 0;
+
+                    &.has-dropdown {
+                        margin: 0;
+
+                        > .navbar-link {
+                            display: none;
+                        }
+
+                        > .navbar-dropdown {
+                            width: 100%;
+                            padding: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        #forum-body,
+        #forum-wiki {
+            min-height: calc(100vh - ($navbar * 3));
+
+            > .main-body {
+                #content-container {
+                    grid-template-columns: 100%;
+
+                    #forum-wiki {
+                        .wiki-body {
+                            grid-template-columns: 1fr;
+                            gap: $spacing-m;
+                        }
+                    }
+
+                    #forum-topbar {
+                        display: none;
+                    }
+
+                    #forum-content {
+                        #forum-breadcrumb {
+                            > ul {
+                                > li {
+                                    &.is-hidden-touch:nth-child(1) {
+                                        & + li {
+                                            a {
+                                                padding-left: 0;
+                                            }
+
+                                            &::before {
+                                                display: none;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .postlist-post {
+                            .post-main {
+                                .post-profile {
+                                    .miniprofile-name {
+                                        padding-bottom: $spacing-l;
+                                    }
+
+                                    .miniprofile-fields {
+                                        display: none;
+                                    }
+                                }
+                            }
+
+                            .post-signature {
+                                .miniprofile-quote {
+                                    display: none;
+                                }
+                            }
+                        }
+
+                        #extracredits-section {
+                            display: block;
+                            
+                            > .category-element {
+                                > .columns {
+                                    #forum-affiliates {
+                                        .affiliates-collection {
+                                            > ul {
+                                                max-width: 224px;
+                                                grid-template-columns: repeat(4,minmax(0,1fr));
+                                                padding: 0 !important;
+                                                margin: 0 auto;
+                                            }
+                                        }
+
+                                        > .columns {
+                                            display: flex;
+                                            flex-flow: column;
+
+                                            #forum-affiliates-sisters {
+                                                order: 1;
+
+                                                > ul {
+                                                    grid-template-columns: repeat(4,minmax(0,1fr));
+                                                    max-width: 572px;
+                                                    padding: 0 !important;
+                                                    margin: 0 auto;
+                                                }
+                                            }
+
+                                            #forum-affiliates-elite {
+                                                order: 2;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        #profile-section {
+                            .profile-element {
+                                > section {
+                                    #profile-subhead {
+                                        > .columns {
+                                            > .column {
+                                                width: 50%;
+
+                                                #profile-links {
+                                                    flex-flow: column;
+                                                    align-items: flex-start;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+$text-xxl: 1.75rem;
+$text-xl: 1.5rem;
+$text-l: 1.25rem;
+$line-xxl: calc($text-xxl * 1.5);
+$line-xl: calc($text-xl * 1.5);
+$line-l: calc($text-l * 1.5);
+$spacing-xxl: 2.5rem;
+$spacing-xl: 1.75rem;
+$spacing-l: 1.25rem;
+$avatar: 150px;
+$signature: 70px;
+
+@media only screen and (max-width: 768px) {
+    @include forum-css();
+
+    body {
+        #forum-navbar {
+            #hmg-menu {
+                padding: $spacing-m $spacing-l $spacing-l $spacing-l;
+
+                h3 {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin: 0;
+                    background: $color-1;
+                    color: $color-2;
+                    font-weight: $weight-l;
+                    letter-spacing: 1px;
+                    font-style: italic;
+                    font-size: $text-l;
+
+                    i {
+                        font-size: $text-m;
+                    }
+                }
+            }
+        }
+
+        #forum-body,
+        #forum-wiki {
+            > .main-body {
+                #content-container {
+                    grid-template-columns: 100%;
+
+                    .button1,
+                    .button2,
+                    input[type="Submit"],
+                    input[type="reset"] {
+                        height: auto;
+                    }
+
+                    #forum-topbar {
+                        display: none;
+                    }
+
+                    .forum-head {
+                        margin: 0 0 $spacing-m 0;
+
+                        h3 {
+                            font-size: $text-xxl;
+                            line-height: $text-xxl;
+                        }
+
+                        small {
+                            &::before {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    #forum-content {
+                        #extracredits-section {
+                            display: block;
+                        }
+
+                        .category-element {
+                            & > .columns {
+                                gap: $spacing-l;
+                            }
+                        }
+
+                        .forum-forum {
+                            width: 100%;
+                            padding-top: $spacing-l;
+                            margin: $spacing-l 0 0 0;
+
+                            &:has(+ .forum-image) {
+                                margin: calc($spacing-xxl * 5) 0 0 0;
+                            }
+
+                            & + .forum-image {
+                                width: 100%;
+                                height: 50%;
+                                background-size: cover;
+                                top: 0;
+                            }
+
+                            .forum-content {
+                                .forum-last,
+                                .forum-links {
+                                    grid-column: 1/span 2;
+                                    text-align: center;
+                                }
+
+                                .forum-links {
+                                    justify-content: center;
+                                    min-height: auto;
+                                    border: none;
+                                    padding: 0;
+                                }
+
+                                .forum-last:has(.lastpost-link) {
+                                    display: flex;
+                                    flex-flow: wrap;
+                                    justify-content: center;
+
+                                    br:first-child {
+                                        display: none;
+                                    }
+
+                                    .lastpost-link {
+                                        order: -4;
+                                    }
+
+                                    &::before {
+                                        content: 'por';
+                                        order: -3;
+                                        margin: 0 $spacing-xxs;
+                                    }
+
+                                    &>strong {
+                                        order: -2;
+                                    }
+
+                                    &::after {
+                                        content: ',';
+                                        order: -1;
+                                        margin: 0 $spacing-xxs 0 0;
+                                    }
+                                }
+                            }
+                        }
+
+                        .category-element.category-estadisticas {
+                            &> .columns {
+                                gap: 0;
+
+                                #bloque-actuales,
+                                #bloque-historico {
+                                    grid-column: 1/span 2;
+
+                                    #past-connected {
+                                        .has-users {
+                                            height: auto;
+                                        }
+                                    }
+                                }
+
+                                #bloque-historico {
+                                    #current-groups {
+                                        #census {
+                                            grid-template-columns: repeat(2, minmax(0,1fr));
+                                        }
+                                    }
+                                }
+
+                                h6 {
+                                    font-size: $text-l;
+                                }
+                            }
+                        }
+
+                        .postlist-post {
+                            .post-signature {
+                                grid-template-columns: 1fr;
+
+                                .miniprofile-signature {
+                                    display: none;
+                                }
+                            }
+
+                            .post-main {
+                                .post-content {
+                                    .post-info {
+                                        .post-buttons {
+                                            .post-button {
+                                                > a {
+                                                    padding: $spacing-xs;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .forum-otherposts {
+                            .postlist-post {
+                                grid-template-columns: 1fr;
+
+                                .post-profile {
+                                    margin: 0;
+                                    position: initial;
+                                    transform: none;
+
+                                    &::before {
+                                        display: none;
+                                    }
+                                }
+
+                                .post-content {
+                                    padding: $spacing-xl;
+                                }
+                            }
+                        }
+
+                        #profile-section {
+                            .profile-element {
+                                > section {
+                                    #profile-head {
+                                        grid-template-columns: 1fr;
+
+                                        #profile-userside {
+                                            #profile-minifields {
+                                                width: calc(100% - $spacing-xl);
+
+                                                &::before {
+                                                    width: calc(100% + $spacing-xl);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    #profile-subhead {
+                                        > .columns {
+                                            display: flex;
+                                            flex-flow: column;
+
+                                            > .column {
+                                                width: 100%;
+
+                                                #profile-links {
+                                                    &.columns {
+                                                        .column {
+                                                            width: 100%;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #forum-footer {
+            .main-body {
+                justify-content: center;
+
+                .right {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 487px) {
+
+    body {
+        #forum-body,
+        #forum-wiki {
+            > .main-body {
+                #content-container {
+                    .forum-field {
+                        flex-flow: wrap;
+                        
+                        .field-name {
+                            width: 100%;
+                            display: block;
+                            height: auto;
+                            padding: 0;
+                            margin: 0!important;
+                            border: none;
+                        }
+
+                        .field-content {
+                            width: 100%;
+                        }
+                    }
+
+                    .memberlist-members {
+                        grid-template-columns: repeat(2, minmax(0, 1fr));
+                    }
+
+                    .forum-head {
+                        small {
+                            display: none;
+                        }
+                    }
+
+                    #forum-content {
+                        .forum-forum {
+                            width: 100%;
+                            padding: $spacing-l;
+
+                            .forum-header {
+                                .forum-title {
+                                    font-size: calc($text-xxl * .9);
+                                    line-height: calc($line-xxl * .9);
+                                }
+
+                                .forum-stats {
+                                    left: 0;
+                                }
+                            }
+                        }
+
+                        .topiclist-topics {
+                            & > li {
+                                .topiclist-topic {
+                                    .topic-quicklink {
+                                        .topic-last {
+                                            br {
+                                                display: block;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .forum-otherposts {
+                            .postlist-post {
+                                .post-profile {
+
+                                    li {
+                                        padding-left: $spacing-l;
+                                        padding-right: $spacing-l;
+
+                                        &:first-child {
+                                            padding-top: $spacing-l;
+                                        }
+
+                                        &:last-child {
+                                            padding-bottom: $spacing-l;
+                                        }
+                                    }
+                                }
+
+                                .post-content {
+                                    padding: $spacing-l;
+                                }
+                            }
+                        }
+
+                        .category-element.category-estadisticas {
+                            &> .columns {
+                                #bloque-actuales,
+                                #bloque-historico {
+                                    padding: $spacing-l!important;
+                                }
+
+                                #bloque-ultimostemas {
+                                    h6 {
+                                        padding: $spacing-l!important;
+                                    }
+
+                                    .ltopic-list {
+                                        grid-template-columns: 1fr;
+                                        padding: 0 $spacing-l!important;
+                                    }
+                                }
+                            }
+                        }
+
+                        .postlist-post {
+                            display: flex;
+                            flex-flow: column;
+
+                            .post-main {
+                                order: 2;
+                                grid-template-columns: 1fr;
+
+                                .post-profile {
+                                    display: none;
+                                }
+
+                                .post-content {
+                                    padding: $spacing-l!important;
+
+                                    .post-info {
+                                        flex-flow: column;
+                                        align-items: flex-start;
+                                    }
+                                }
+                            }
+
+                            .post-signature {
+                                order: 1;
+                                padding: 0;
+                                gap: 0;
+                                grid-template-columns: $signature minmax(0,1fr);
+
+                                .signature-side {
+                                    order: 2;
+                                    gap: $spacing-xs;
+
+                                    .miniprofile-name {
+                                        display: block;
+
+                                        a {
+                                            color: $color-2;
+                                        }
+                                    }
+
+                                    .miniprofile-contacts {
+                                        .miniprofile-contact {
+                                            a {
+                                                font-size: $text-xxs;
+                                                line-height: $line-xxs;
+                                                padding: $spacing-xs;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .miniprofile-signature {
+                                    order: 1;
+                                    display: block;
+                                    aspect-ratio: 11/16;
+
+                                    .is-signature {
+                                        display: none;
+                                    }
+
+                                    .is-avatar {
+                                        display: block;
+                                        width: 100%;
+                                        height: 100%;
+                                    }
+                                }
+                            }
+                        }
+
+                        #extracredits-section {
+                            > .category-element {
+                                > .columns {
+                                    #forum-affiliates {
+                                        .affiliates-collection {
+                                            > ul {
+                                                max-width: 166px;
+                                                grid-template-columns: repeat(3,minmax(0,1fr));
+                                            }
+                                        }
+
+                                        > .columns {
+                                            #forum-affiliates-sisters {
+                                                > ul {
+                                                    grid-template-columns: repeat(2,minmax(0,1fr));
+                                                    max-width: 459px;
+                                                    padding: 0 !important;
+                                                    margin: 0 auto;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        #profile-section {
+                            .profile-element {
+                                > section {
+                                    #profile-head {
+                                        grid-template-columns: 1fr;
+
+                                        #profile-userside {
+                                            #profile-minifields {
+                                                width: calc(100% - $spacing-l);
+                                                padding: $spacing-l;
+                                                transform: translateX($spacing-l) translateY($spacing-l);
+
+                                                &::before {
+                                                    width: calc(100% + $spacing-l);
+                                                    transform: translateX(-($spacing-l)) translateY(-($spacing-l)) translateZ(-1px);
+                                                }
+                                            }
+                                        }
+
+                                        #profile-userinfo {
+                                            padding: $spacing-l;
+                                        }
+                                    }
+
+                                    #profile-subhead {
+                                        padding: $spacing-l;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
